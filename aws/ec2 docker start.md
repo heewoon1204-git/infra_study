@@ -23,7 +23,63 @@ sudo systemctl status docker
 ### 1. 이미지 다운로드
 - pull  :  이미지를 다운로드하는 것일 뿐 컨테이너가 실행되지 않음
 ```bash
+# 이미지 다운로드
 sudo docker pull nginx
+
+# 이미지 다운로드 확인
+sudo docker images
+```
+
+### 2. 컨테이너 실행
+ec2(ubuntu)가 nginx를 실행하는게 아니라 docker가 컨테이너를 만들어서 nginx를 실행하는 것.
+보안그룹에 ssh port만 뚫려있으면, 로컬에서 http로 연결되지 않음.
+
+- p : host port :container port를 설정
+```bash
+# 실행
+sudo docker run -d --name web -p 80:80 nginx
+
+# nginx 실행 확인
+curl localhost
+```
+
+```bash
+Ubuntu(EC2)
+┌──────────────────────────────┐
+│                              │
+│  dockerd (Docker Engine)     │
+│                              │
+│   ┌────────────────────┐     │
+│   │ nginx Container    │     │
+│   │                    │     │
+│   │ nginx :80          │     │
+│   └────────────────────      │
+│                              │
+└──────────────────────────────┘
 ```
 
 
+```bash
+             내 pc
+
+        http://EC2_Public_IP
+                  │
+                  │ 80
+                  ▼
+        AWS Security Group
+          HTTP(80) 허용 ✅
+                  │
+                  ▼
+        EC2 (Ubuntu)
+                  │
+                  │ Host Port 80
+                  ▼
+        Docker Engine (dockerd)
+                  │
+                  │ -p 80:80
+                  ▼
+        nginx Container
+                  │
+                  ▼
+      Welcome to nginx!
+```

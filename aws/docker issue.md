@@ -63,3 +63,14 @@ sudo usermod -aG docker ubuntu
 # 그룹 확인
 groups ubuntu
 ```
+
+## 2. 로컬 pc에서 nginx 접속이 안될 때
+
+### 장애 현상
+command 창에서는 nginx가 curl localhost로 접속이 되는데 개인 pc에서 http로 접속하면 접속이 불가한 상황
+
+### 장애 원인
+ec2 보안그룹에 ssh 20번 port만 inboud 규칙이 만들어져 있어 http로 접속이 불가했음.
+
+### 장애 해결
+접속하고자 하는 nginx가 있는 서버의 보안 그룹에 http 접근이 가능하도록 80 port를 inbound에 추가
