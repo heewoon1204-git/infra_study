@@ -9,6 +9,7 @@ Linux (기본)
         ▼
 Docker
         │
+        ├─ Image, container
         ├─ Volume
         ├─ Network
         └─ Compose
