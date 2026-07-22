@@ -23,14 +23,15 @@
 - [x] Security Group
 - [x] Application Load Balancer (ALB)
 - [x] Network Load Balancer (NLB)
-- [x] Auto Scaling Group (ASG)
-- [ ] CloudWatch
+- [x] Auto Scaling Group, CloudWatch (ASG)
 - [ ] IAM
+- [ ] S3
 - [ ] ACM
+- [ ] Route 53
 - [ ] AWS Systems Manager (SSM)
 - [ ] RDS
-- [ ] EKS
 - [ ] Terraform
+- [ ] EKS, helm
 
 ### 📊 Monitoring
 - [ ] Prometheus
